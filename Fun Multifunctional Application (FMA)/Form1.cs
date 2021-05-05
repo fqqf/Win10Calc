@@ -69,6 +69,8 @@ namespace Fun_Multifunctional_Application__FMA_
         }
 
         public double res;
+        public String lastOperation;
+        public double lastDig;
 
         private void button10_Click(object sender, EventArgs e)
         {
@@ -76,7 +78,7 @@ namespace Fun_Multifunctional_Application__FMA_
 
             d1 = Convert.ToDouble(N1);
             d2 = Convert.ToDouble(textBox1.Text);
-
+            if (operation == "") { operation = lastOperation; d1 = d2; d2 = lastDig; }
             switch (operation)
             {
                 case "÷":
@@ -92,6 +94,8 @@ namespace Fun_Multifunctional_Application__FMA_
                     res = d1 + d2;
                     break;
             }
+            lastOperation = operation;
+            lastDig = d2;
             operation = "";
             ended = true;
             textBox1.Text = res.ToString();
@@ -114,9 +118,11 @@ namespace Fun_Multifunctional_Application__FMA_
                     break;
                 case "x^2":
                     textBox1.Text = (dn2*dn2).ToString();
+                    textBox2.Text = "sqr(" + dn2 + ")";
                     break;
                 case "1/x":
                     textBox1.Text = (1/dn2).ToString();
+                    textBox2.Text = "1/(" + dn2 + ")";
                     break;
             }
 
